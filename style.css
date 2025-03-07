@@ -1,0 +1,362 @@
+/* --- General Styles --- */
+
+body {
+    font-family: 'Pangolin', cursive;
+    background-color: #fcecfc;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #5e2670;
+    transition: background-color 0.5s, color 0.5s, font-family 0.5s;
+    overflow-x: hidden;
+}
+
+.container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 900px; /* Slightly wider container */
+    width: 95%;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 3px #f4a9a8;
+    transition: font-size 0.5s, text-shadow 0.5s;
+}
+
+textarea, button, #outputText {
+    font-family: 'Pangolin', cursive;
+    transition: font-family 0.5s;
+}
+
+textarea {
+    width: 95.5%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #f4a9a8;
+    border-radius: 10px;
+    font-size: 1.1em;
+    resize: vertical;
+    transition: border-color 0.5s;
+}
+
+button {
+    background-color: #f4a9a8;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.5s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #f7c4c4;
+}
+
+#outputText {
+    margin-top: 20px; /* Reduced top margin */
+    padding: 20px;
+    border: 2px dashed #f4a9a8;
+    border-radius: 10px;
+    font-size: 1.2em;
+    white-space: pre-wrap;
+    background-color: #fff9fa;
+    transition: border-color 0.5s, background-color 0.5s;
+    min-height: 100px; /* Added min-height for better visual */
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #777;
+    transition: color 0.5s;
+    display: flex; /* Footer becomes flex container */
+    justify-content: space-between; /* Space out footer content */
+    align-items: center; /* Vertically align items in footer */
+}
+
+.privacy-notice, .terms-of-use, .as-is-disclaimer, .copyright-notice, .attribution-notice {
+    font-size: 0.8em;
+    color: #999;
+    margin-bottom: 8px; /* Reduced margin */
+    line-height: 1.3; /* Slightly tighter line height */
+}
+
+
+/* --- Mode Toggle Button --- */
+.mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+#modeButton {
+    background-color: #f4a9a8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.5s;
+    font-family: 'Pangolin', cursive;
+}
+
+#modeButton:hover {
+    background-color: #f7c4c4;
+}
+
+
+/* --- Transformer Area (Side-by-Side Layout) --- */
+.transformer-area {
+    display: flex; /* Flexbox for side-by-side */
+    flex-direction: row; /* Arrange items in a row */
+    align-items: flex-start; /* Align items to the top */
+    justify-content: space-between; /* Space between input/output and image */
+    width: 100%;
+    gap: 30px; /* Space between columns */
+}
+
+.input-output {
+    flex: 2; /* Input/output takes more space */
+    display: flex;
+    flex-direction: column; /* Stack input, button, output vertically */
+}
+
+#animeGirlContainer {
+    flex: 1; /* Image takes less space */
+    margin-top: 0; /* Reset margin */
+    opacity: 1;
+    transition: opacity 0.5s, max-width 0.5s, margin-left: 0.5s; /* Changed to max-width for horizontal layout */
+    max-width: 300px; /* Limit max width now */
+    overflow: hidden;
+    margin-left: 20px; /* Add left margin to separate from text */
+}
+
+#animeGirlImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.animated-image {
+    animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+
+/* --- Star Rain Animation --- */
+.star-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star-rain::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.7)); /* Slightly denser stars */
+    animation: rain 5s linear infinite;
+}
+
+.star-rain::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.3));
+    animation: rain-reverse 7s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes rain {
+    0% { background-position: 0% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+@keyframes rain-reverse {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 100%; }
+}
+
+
+/* --- Nerd Mode Styles --- */
+body.nerd-mode {
+    font-family: 'DotGothic16', monospace; /* Pixelated nerd font */
+    background-color: #000000; /* Black background */
+    color: #00ff00; /* Bright green text */
+    background-image: url('https://www.codeproject.com/KB/cs/5164199/intro-r-700.png'); /* Patterned background */
+    background-size: cover; /* Cover the whole background */
+    background-blend-mode: color-dodge; /* Blend pattern for effect */
+}
+
+body.nerd-mode .container {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker, slightly transparent container */
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5); /* Brighter green glow */
+    border: 2px solid #00ff00; /* Green border */
+}
+
+body.nerd-mode h1 {
+    font-size: 3em;
+    text-shadow: 2px 2px 3px #00bb00; /* Darker green shadow */
+    color: #00ff00; /* Ensure heading is bright green */
+}
+
+body.nerd-mode textarea,
+body.nerd-mode #outputText {
+    font-family: 'DotGothic16', monospace; /* Match nerd font */
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly lighter dark background */
+    color: #00ff00; /* Bright green text */
+    border-color: #00bb00; /* Darker green border */
+}
+
+body.nerd-mode textarea::selection,
+body.nerd-mode #outputText::selection { /* Selection color */
+    background-color: rgba(0, 255, 0, 0.3); /* Green selection */
+    color: #000; /* Black text in selection */
+}
+
+
+body.nerd-mode button {
+    background-color: #00bb00; /* Darker green button */
+    color: #000; /* Black button text */
+    font-family: 'DotGothic16', monospace; /* Nerd font for button text */
+    border: 2px solid #00ff00; /* Green border for button */
+}
+
+body.nerd-mode button:hover {
+    background-color: #00dd00; /* Lighter green hover */
+}
+
+body.nerd-mode .footer {
+    color: #666; /* Darker gray footer */
+}
+
+
+body.nerd-mode #modeButton {
+    background-color: #00bb00;
+    color: #000;
+    font-family: 'DotGothic16', monospace;
+    border: 2px solid #00ff00; /* Green border for mode button */
+}
+
+body.nerd-mode #modeButton:hover {
+    background-color: #00dd00;
+}
+
+body.nerd-mode #animeGirlContainer {
+    opacity: 0;
+    max-width: 0; /* Changed to max-width for horizontal layout hide */
+    margin-left: 0; /* Reset margin for horizontal hide */
+    overflow: hidden;
+}
+
+body.nerd-mode .star-rain {
+    display: none;
+}
+
+body.nerd-mode .code-rain {
+    display: block; /* Show code rain in nerd mode */
+}
+
+body.nerd-mode .quote-display { /* Nerd mode quote style */
+    color: #00ff00; /* Green quote text in nerd mode */
+    text-shadow: 1px 1px 0 #00bb00; /* Green text shadow */
+}
+
+
+/* --- Code Rain Animation (Nerd Mode Background) --- */
+.code-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    display: none; /* Initially hidden, shown in nerd mode only */
+}
+
+.code-rain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200vh; /* Extend beyond viewport */
+    background-image: url('https://www.codeproject.com/KB/cs/5164199/intro-r-700.png'); /* Code pattern image */
+    background-size: contain; /* Contain pattern */
+    opacity: 0.7; /* Semi-transparent code */
+    animation: code-flow 20s linear infinite; /* Slower code flow */
+}
+
+@keyframes code-flow {
+    0% { transform: translateY(-100vh); } /* Start above viewport */
+    100% { transform: translateY(0vh); }   /* End at top of viewport */
+}
+
+
+/* --- Quote Display Styling --- */
+.quote-display {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 0.9em;
+    color: #777;
+    font-style: italic;
+    transition: color 0.5s;
+    text-align: left; /* Align quote text to the left */
+    max-width: 40%; /* Limit quote width */
+}
+
+/* --- GitHub Icon Styling --- */
+.footer .github-icon {
+    color: #777;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-left: 20px; /* Add some spacing from text */
+}
+
+.footer .github-icon:hover {
+    color: #f4a9a8; /* Pink on hover (UwU theme) */
+}
+
+body.nerd-mode .footer .github-icon { /* Nerd mode github icon color */
+    color: #666; /* Darker grey in nerd mode */
+}
+
+body.nerd-mode .footer .github-icon:hover {
+    color: #00dd00; /* Green on hover (Nerd theme) */
+}
